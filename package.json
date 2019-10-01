@@ -1,0 +1,25 @@
+{
+  "name": "pwa-with-apis",
+  "version": "1.0.0",
+  "description": "Progressive Web App with apis",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack": "webpack --config webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/buckldav/pwa-with-apis.git"
+  },
+  "author": "David Buckley",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/buckldav/pwa-with-apis/issues"
+  },
+  "homepage": "https://github.com/buckldav/pwa-with-apis#readme",
+  "devDependencies": {
+    "webcamjs": "^1.0.25",
+    "webpack": "^4.41.0",
+    "webpack-cli": "^3.3.9"
+  }
+}
