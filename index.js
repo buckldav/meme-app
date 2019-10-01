@@ -1,1 +1,0 @@
-import webcam from 'webcamjs'
