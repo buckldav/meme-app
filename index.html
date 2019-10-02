@@ -5,7 +5,7 @@
   <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
-  <title>Your page title here :)</title>
+  <title>Meme React Screenshot</title>
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -27,8 +27,10 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="icon" type="image/ico" href="img/favicon.ico">
 
-  <!-- App Manifest -------------------------------------------------- -->
+  <!-- App Manifest 
+  -------------------------------------------------- -->
   <link rel="manifest" href="myapp.webmanifest">
+
 </head>
 <body class="background">
 
@@ -36,52 +38,71 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="container">
     <div class="row">
-      <div class="column" style="margin-top: 25%">
-        <h4>Progressive Web App</h4>
-        <div id="results">Your captured image will appear here...</div>
+      <div class="column">
+        <div id="memes">
+          <img src="img/meme.jpg" width=100%>
+        </div>
+        <div id="results" style="visibility: hidden;"></div>
         
-        <h1>WebcamJS Test Page</h1>
-        <h3>Demonstrates simple 320x240 capture &amp; display</h3>
-        
-        <div id="my_camera"></div>
-        
-        <!-- First, include the Webcam.js JavaScript Library -->
-        <script type="text/javascript" src="js/webcam.min.js"></script>
-        
-        <!-- Configure a few settings and attach camera -->
-        <script language="JavaScript">
-          Webcam.set({
-            width: 320,
-            height: 240,
-            image_format: 'jpeg',
-            jpeg_quality: 90
-          });
-          Webcam.attach( '#my_camera' );
-        </script>
-        
-        <!-- A button for taking snaps -->
-        <form>
-          <input type=button value="Take Snapshot" onClick="take_snapshot()">
-        </form>
-        
-        <!-- Code to handle taking the snapshot and displaying it locally -->
-        <script language="JavaScript">
-          function take_snapshot() {
-            // take snapshot and get image data
-            Webcam.snap( function(data_uri) {
-              // display results in page
-              document.getElementById('results').innerHTML = 
-                '<h2>Here is your image:</h2>' + 
-                '<img src="'+data_uri+'"/>';
-            } );
-          }
-        </script>
+        <section id="camera-container">
+          <div id="my_camera"></div>
+          
+          <!-- First, include the Webcam.js JavaScript Library -->
+          <script type="text/javascript" src="js/webcam.min.js"></script>
+          <script type="text/javascript" src="js/html2canvas.min.js"></script>
+          
+          <!-- Configure a few settings and attach camera -->
+          <script language="JavaScript">
+            Webcam.set({
+              width: 180,
+              height: 180,
+              image_format: 'jpeg',
+              jpeg_quality: 90
+            });
+            Webcam.attach( '#my_camera' );
+          </script>
+          
+          <!-- A button for taking snaps -->
+          <form>
+            <input type=button value="Take Snapshot" class="button-primary" onClick="take_snapshot()">
+          </form>
+          
+          <!-- Code to handle taking the snapshot and displaying it locally -->
+          <script language="JavaScript">
+            function take_snapshot() {
+              // take snapshot and get image data
+              Webcam.snap( function(data_uri) {
+                // display results in page
+                document.getElementById('results').innerHTML = 
+                  '<img id="your-face" src="'+data_uri+'" width=50 height=50 />';
+              } );
+
+              // same for iframe
+              html2canvas(document.querySelector("#memes")).then(canvas => {
+                var ctx = canvas.getContext("2d");
+                var img = document.getElementById("your-face");
+                ctx.drawImage(img, 150, 350);
+
+                // convert the combined canvas to an image
+                var imgSrc = canvas.toDataURL("image/png");
+                var imgEl  = document.createElement("img");
+                imgEl.src = imgSrc;
+                imgEl.width = window.innerWidth - 32;
+                document.body.append(imgEl);
+
+                // Hide the top stuff for now
+                document.getElementById("memes").style.display = "none";
+                document.getElementById("camera-container").style.display = "none";
+              });
+            }
+          </script>
+        </section>
       </div>
     </div>
   </div>
 
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <script src="script.js"></script>
+  <!-- <script src="script.js"></script> -->
 </body>
 </html>

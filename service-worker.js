@@ -4,11 +4,14 @@ var cacheName = 'myapp-cache-0.1';
 var appShellFiles = [
   '/index.html',
   '/script.js',
+  '/js/html2canvas.min.js',
+  '/js/webcam.min.js',
   '/css/normalize.css',
   '/css/skeleton.css',
   '/css/style.css',
-  '/img/background.jpg',
-  '/img/favicon.ico'
+  '/img/meme.jpg',
+  '/img/favicon.ico',
+  '/img/m_navy.png'
 ];
 
 self.addEventListener('install', (e) => {

@@ -22,5 +22,8 @@
     "nodemon": "^1.19.3",
     "webcamjs": "^1.0.25",
     "webpack-cli": "^3.3.9"
+  },
+  "dependencies": {
+    "html2canvas": "^1.0.0-rc.5"
   }
 }
